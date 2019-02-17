@@ -32,8 +32,12 @@ class List extends React.Component {
         var date = this.state.dates;
         date.push(moment().format('MMMM Do YYYY, h:mm:ss a'));
         console.log("this.state.list", this.state.list);
+        //after 10 seconds the task expires still buggy
+        // setTimeout(()=>{this.doneHandler(this.state.list.length-1)}
+        // , 10000);
         this.setState({ list: fakeArr});
         this.setState({ dates: date});
+
     }
     else if(this.state.word.length<=1){
             this.setState({error: "Error, input must be more than 1 characters in length"});
