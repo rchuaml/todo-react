@@ -3,7 +3,9 @@ class List extends React.Component {
     super()
     this.changeHandler = this.changeHandler.bind( this );
     this.clickHandler = this.clickHandler.bind( this );
-    // this.deleteHandler = this.deleteHandler.bind( this );
+    this.editHandler = this.editHandler.bind( this );
+    this.deleteHandler = this.deleteHandler.bind( this );
+
   }
 
   state = {
@@ -43,6 +45,12 @@ class List extends React.Component {
     this.setState({list:listArray});
   }
 
+  editHandler(index){
+    var editArray = this.state.list;
+    editArray.splice(index, 1, this.state.word);
+    this.setState({list:editArray});
+  }
+
   render() {
       // render the list with a map() here
 
@@ -53,7 +61,7 @@ class List extends React.Component {
             <input onChange={this.changeHandler} value={this.state.word}/>
             <button onClick = {this.clickHandler}>add item</button>
             <ul>{this.state.list.map((listitem , index)=>{
-                return <li>{listitem}<button onClick = {() => {this.deleteHandler(index)}}> Delete this item</button></li>;
+                return <li>{listitem}<button onClick = {() => {this.editHandler(index)}}> Edit this item</button><button onClick = {() => {this.deleteHandler(index)}}> Delete this item</button></li>;
                 })}
             </ul>
         </div>
